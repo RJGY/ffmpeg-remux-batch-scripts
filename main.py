@@ -15,6 +15,23 @@ def pre_remux_checks(files: list):
     total = len(files)
     print(str(total) + " file(s) detected")
     print("From your current file configuration, you will be converting: ")
+    
+    supported_extensions = []
+    for key, value in data.items():
+        for extension in value:
+            supported_extensions.append(extension)
+    files_to_remove = []
+    for file in files:
+        filename = os.path.basename(file).rsplit('.', 1)[0]
+        extension = os.path.splitext(file)[1][1:].strip().lower()
+        if extension not in supported_extensions:
+            print("File " + file + " is not supported. Please check your config.json file.")
+            files_to_remove.append(file)
+    
+    for file in files_to_remove:
+        files.remove(file)
+        
+        
     for key, value in data.items():
         count = 0
         for file in files:
@@ -31,6 +48,9 @@ def pre_remux_checks(files: list):
         sys.exit()
     
 def remux(files: list, total: int, data: dict):
+    if len(files) == 0:
+        print("No files to remux")
+        sys.exit()
     count = 0
     errors = {}
     if total > 1:
@@ -50,7 +70,7 @@ def remux(files: list, total: int, data: dict):
                         print("Remuxing " + file + " to " + os.path.join(os.getcwd(), 'remuxed', filename) + "." + key + " (" + str(count) + "/" + str(total) + ")")
                         stream = ffmpeg.input(file)
                         stream = ffmpeg.output(stream, os.path.join(os.getcwd(), 'remuxed', filename) + "." + key, acodec='copy',vcodec='copy')
-                    ffmpeg.run(stream, quiet=True)
+                    ffmpeg.run(stream, quiet=False)
                     print("Remuxed " + file + " to " + key)
                 except Exception as ex:
                     print("Error remuxing " + file + " due to: " + str(ex))
