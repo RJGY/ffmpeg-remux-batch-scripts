@@ -45,11 +45,11 @@ def remux(files: list, total: int, data: dict):
                     if total == 1:
                         print("Remuxing " + file + " to " + os.path.splitext(file)[0] + "." + key + " (" + str(count) + "/" + str(total) + ")")
                         stream = ffmpeg.input(file)
-                        stream = ffmpeg.output(stream, os.path.splitext(file)[0] + "." + key, f=key)
+                        stream = ffmpeg.output(stream, os.path.splitext(file)[0] + "." + key, acodec='copy',vcodec='copy')
                     else:
                         print("Remuxing " + file + " to " + os.path.join(os.getcwd(), 'remuxed', filename) + "." + key + " (" + str(count) + "/" + str(total) + ")")
                         stream = ffmpeg.input(file)
-                        stream = ffmpeg.output(stream, os.path.join(os.getcwd(), 'remuxed', filename) + "." + key)
+                        stream = ffmpeg.output(stream, os.path.join(os.getcwd(), 'remuxed', filename) + "." + key, acodec='copy',vcodec='copy')
                     ffmpeg.run(stream, quiet=True)
                     print("Remuxed " + file + " to " + key)
                 except Exception as ex:
