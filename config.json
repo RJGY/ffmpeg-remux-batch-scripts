@@ -1,0 +1,6 @@
+{
+    "mp3" : ["opus", "wav", "flac", "m4a"],
+    "mp4" : ["avi", "m4v"],
+    "jpeg" : ["jpeg", "png"],
+    "mkv" : ["m2ts"]
+}

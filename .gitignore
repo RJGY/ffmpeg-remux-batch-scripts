@@ -1,0 +1,8 @@
+*.mp4
+*.mp3
+*.jpeg
+*.wav
+*.m4v
+*.png
+env/
+remuxed/
