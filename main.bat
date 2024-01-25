@@ -2,5 +2,6 @@
 title Remuxer
 cls
 cd %~dp0
-py ./main.py %*
+call .\env\Scripts\activate.bat
+python ./main.py %*
 pause
