@@ -1,7 +1,7 @@
 @echo off
-title Remuxer
+title Hanabi ^| Remuxer
 cls
 cd %~dp0
 call .\env\Scripts\activate.bat
-python ./main.py %*
+py ./src/remux.py %*
 pause

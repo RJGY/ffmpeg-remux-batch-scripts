@@ -4,5 +4,6 @@
 *.wav
 *.m4v
 *.png
+*.mkv
 env/
 remuxed/

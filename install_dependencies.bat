@@ -22,7 +22,7 @@ call .\env\Scripts\activate.bat
 
 :: Install Python Packages
 echo Installing Python Packages
-python -m pip install -r requirements.txt
+python -m pip install -r src\requirements.txt
 
 :: Once done, exit the batch file -- skips executing the errorNoPython section
 echo Done
@@ -50,7 +50,7 @@ call .\env\Scripts\activate.bat
 
 :: Install Python Packages
 echo Installing Python Packages
-py -m pip install -r requirements.txt
+py -m pip install -r src\requirements.txt
 
 :: Once done, exit the batch file -- skips executing the errorNoPython section
 echo Done
