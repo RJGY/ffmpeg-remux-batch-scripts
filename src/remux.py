@@ -60,9 +60,11 @@ def pre_remux_checks(files: list):
             print("Converting " + bcolors.OKGREEN + str(count) + bcolors.ENDC + " file(s) to " + bcolors.WARNING + "." + key + bcolors.ENDC + " (" + ", ".join(sub_list_str) + ")")
     
     print("\n")
-    print(bcolors.FAIL + "ERROR: The following file(s) are not supported: Please check your config.json file." + bcolors.ENDC)
-    for file in files_to_remove:
-        print(bcolors.FAIL + "File " + file + " is not supported." + bcolors.ENDC)
+    if files_to_remove:
+        print(bcolors.FAIL + "ERROR: The following file(s) are not supported: Please check your config.json file." + bcolors.ENDC)
+        for file in files_to_remove:
+            print(bcolors.FAIL + "File " + file + " is not supported." + bcolors.ENDC)
+        exit()
        
     print("\n")     
     ans = input("Do you want to proceed with remuxing? (y/n)")
@@ -97,10 +99,10 @@ def remux(files: list, total: int, data: dict):
                         print(bcolors.OKBLUE + "Remuxing " + file + " to " + os.path.join(os.getcwd(), 'remuxed', filename) + "." + key + " (" + str(count) + "/" + str(total) + ")" + bcolors.ENDC)
                         stream = ffmpeg.input(file)
                         stream = ffmpeg.output(stream, os.path.join(os.getcwd(), 'remuxed', filename) + "." + key, acodec='copy',vcodec='copy')
-                    ffmpeg.run(stream, quiet=False)
+                    ffmpeg.run(stream, quiet=True)
                     print("Remuxed " + file + " to " + key)
                 except Exception as ex:
-                    print(bcolors.FAIL + "Error remuxing " + file + " due to: " + str(ex) + bcolors.ENDC)
+                    print(bcolors.FAIL + "Error remuxing " + file + " due to: " + str(ex) + bcolors.ENDC + "\n")
                     errors[file] = str(ex)
                 break
         
