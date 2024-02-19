@@ -1,5 +1,21 @@
-{
-    "mp3" : ["opus", "wav", "flac", "m4a"],
-    "jpeg" : ["jpeg", "png"],
-    "mkv" : ["mp4"]
+{ 
+    "operating_system" : {
+        "_comment" : "Supported systems are Windows and Linux.",
+        "os" : "Windows"
+    },
+    "conversion_table" : {
+        "_comment" : "",
+        "_example" : "\"mp3\" : [\"opus\", \"wav\", \"flac\", \"m4a\"]",
+        "mp3" : ["opus", "wav", "flac", "m4a"],
+        "jpeg" : ["jpeg", "png"],
+        "mkv" : ["mp4"]
+    },
+    "output_location" : {
+        "_comment" : "",
+        "location" : ""
+    },
+    "custom_remux_arguments" : {
+        "_comment" : "Seperate each one with a comma. Leave empty if you do not know what you are doing.",
+        "arguments" : []
+    }
 }

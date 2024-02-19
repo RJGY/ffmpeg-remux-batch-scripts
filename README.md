@@ -1,33 +1,76 @@
 <style>
-blockquote {
-  border-left: 5px solid #7bd5f5;
-}
+    hr {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        height: 1px; 
+        border: none;
+        background-color: #555; 
+    }
 </style>
-<blockquote>
 
-# <font color='gold'> <ins>__**Support Me:**__ <ins> 
-### <font color='1ca7e7'> **If you found this helpful, support me on:**<font color='d5d5d5'>
-> * **Portfolio:** <font color='1ca7e7'>https://russie.me/</font>
-> * **Discord:** russie#0001
-> * **Instagram:** @russie
-> * **YouTube:** @russie⠀ 
+<blockquote style="border-left: 5px solid #ffe4e1;">
+
+<b> <h1 style="font-size: 40px; color: #FFD700;">[💮] Support Me!</h1> </b>
+
+<h2 style="color: #89C7DF; font-weight: bold;"><span>[📢]</span> <span style="text-decoration: underline;">Connect with me:</span></h2>
+<blockquote style="padding-bottom: 5px; padding-top: 5px; border-left: 5px solid #ffe4e1;">
+<hr>
+<ul style="padding-left: 30px;">
+    <li><strong>Website:</strong> <a href="https://russie.me/">https://russie.me/</a></li>
+    <li><strong>Discord:</strong> russie#0001 | <a href="https://discord.gg/russie">discord.gg/russie</a></li>
+    <li><strong>Instagram:</strong> @russie</li>
+    <li><strong>YouTube:</strong> @russie</li>
+</ul>
+</blockquote>
 
 <br>
 
-### <font color='1ca7e7'> **HOW TO USE | 1) Installing Depends:**
-><font color='D5D5D5'> **NOTE:** I am not liable to any damages to your system if the script is misused or modified by a third party.
-> <br>
-> <br>
-> To use this script as intended, you must run the `install_depends.bat` file to install the necessary libraries on your local system in order to use the script.
-> Read the `requirements.txt` for the full breakdown of libraries used.
- 
+<h2 style="color: #89C7DF; font-weight: bold;"><span>[⬇️]</span> <span style="text-decoration: underline;">Installation & Removal:</span></h2>
+<blockquote style="padding-bottom: 5px; padding-top: 5px; border-left: 5px solid #ffe4e1;">
+<hr>
+To use these scripts as intended, you must run the `install_dependencies.bat` file to install the necessary libraries on your local system. To remove these scripts from your system, run the `uninstall_dependencies.bat` file instead.
+
+Read the `requirements.txt` for the full breakdown of libraries used.
+
+I am not liable to any damages to your system if the script is misused or modified by a third party. 
+</blockquote>
+
 <br>
 
-### <font color='1ca7e7'> **HOW TO USE | 2) Using The Script:**
-><font color='D5D5D5'> In order to modfiy the script to convert as you wish, you can modify the configuration file to convert your files to the desired extension/container. 
-> <br>
-> <br>
-> **NOTE:** Do NOT  modify the structure of the configuration file outside of the contents within brackets (and commas when neccessary) as it will break the configuration file, to modfiy the converttable, simply change the contents within the square and regular brackets to your desired output / input extension. To view the full list of supported extensions, run the commands `ffmpeg -demuxers` and `ffmpeg -muxers` in CMD once you have ran the `install_dependencies.bat` file.
-> <br>
-> <br>
-Script made by RJGY
+<h2 style="color: #89C7DF; font-weight: bold;"><span>[🔧]</span> <span style="text-decoration: underline;">Usage:</span></h2>
+<blockquote style="padding-bottom: 5px; padding-top: 5px; border-left: 5px solid #ffe4e1;">
+<hr>
+In order to modify the script to convert as you wish, you can modify the configuration file to convert your files to the desired extension/container. To initiate, simply drag and drop selected file(s) onto the script(s).
+
+<br>
+
+<table>
+    <tr>
+        <th>Script</th>
+        <th>Description</th>
+    </tr>
+        <tr>
+        <td><strong>Font Conversion</strong></td>
+        <td>Converts font files between font formats (ttf, otf, woff, woff2, etc).</td>
+    </tr>
+            <tr>
+        <td><strong>Metadata Removal</strong></td>
+        <td>Removes all non-essential metadata from your file(s).</td>
+    </tr>
+            <tr>
+        <td><strong>Re-Encoding</strong></td>
+        <td>This is NOT a lossless process, re-encoding takes the existing file and encode it again with different codec, bitrate, or other settings.</td>
+    </tr>
+            <tr>
+        <td><strong>Re-Muxing</strong></td>
+        <td>This IS a lossless process, re-muxing extracts the file's existing streams from a video container and puts them into a new container without altering the original codec or quality.</td>
+    </tr>
+            <tr>
+        <td><strong>Upscaler</strong></td>
+        <td>This is NOT the same as AI-Upscaling as it does not involve any models, this is simply using FFMpeg algorithms to upscale the dimentions of your video, this is done to "trick" video sharing platforms such as YouTube to give your video a higher bitrate.</td>
+</table>
+</blockquote>
+<br>
+
+scripts by RJGY
+</blockquote>
