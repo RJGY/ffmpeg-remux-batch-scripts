@@ -22,17 +22,18 @@ def print_ascii():
     
 def pre_remux_checks(files: list):
     json_str = open('src/config.json', 'r').read()
-    data = json.loads(json_str)
+    conversion_table = json.loads(json_str)
+    conversion_table = conversion_table["conversion_table"]["table"]
     total = len(files)
     print(bcolors.WARNING + str(total) + " file(s) detected" + bcolors.ENDC)
     print("\n")
     print("From your current file configuration, you will be converting: \n")
     
     supported_extensions = dict()
-    for key, value in data.items():
-        for extension in value:
+    for outputs, inputs in conversion_table.items():
+        for extension in inputs:
             if extension not in supported_extensions.keys():
-                supported_extensions.update({extension: key})
+                supported_extensions.update({extension: outputs})
     
     files_to_remove = []
     for file in files:
@@ -44,20 +45,20 @@ def pre_remux_checks(files: list):
         files.remove(file)
         
         
-    for key, value in data.items():
+    for outputs, inputs in conversion_table.items():
         count = 0
-        zero_list = [0 for key, value in data.items()]
-        old_count = dict(zip(value, zero_list))
+        zero_list = [0 for key, value in conversion_table.items()]
+        old_count = dict(zip(inputs, zero_list))
         for file in files:
             extension = os.path.splitext(file)[1][1:].strip().lower()
-            if extension in value:
+            if extension in inputs:
                 count += 1
                 old_count[extension] += 1
         sub_list_str = [str(value) + " " + key for key, value in old_count.items()]
         if count == 0:
-            print("Converting " + bcolors.FAIL + str(count) + bcolors.ENDC + " file(s) to " + bcolors.WARNING + "." + key + bcolors.ENDC + " (" + ", ".join(sub_list_str) + ")")
+            print("Converting " + bcolors.FAIL + str(count) + bcolors.ENDC + " file(s) to " + bcolors.WARNING + "." + outputs + bcolors.ENDC + " (" + ", ".join(sub_list_str) + ")")
         else:
-            print("Converting " + bcolors.OKGREEN + str(count) + bcolors.ENDC + " file(s) to " + bcolors.WARNING + "." + key + bcolors.ENDC + " (" + ", ".join(sub_list_str) + ")")
+            print("Converting " + bcolors.OKGREEN + str(count) + bcolors.ENDC + " file(s) to " + bcolors.WARNING + "." + outputs + bcolors.ENDC + " (" + ", ".join(sub_list_str) + ")")
     
     print("\n")
     if files_to_remove:
@@ -69,7 +70,7 @@ def pre_remux_checks(files: list):
     print("\n")     
     ans = input("Do you want to proceed with remuxing? (y/n)")
     if (ans == 'y'):
-        remux(files, total, data)
+        remux(files, total, conversion_table)
     else:
         print("Exiting...")
         sys.exit()
@@ -100,13 +101,13 @@ def remux(files: list, total: int, data: dict):
                         stream = ffmpeg.input(file)
                         stream = ffmpeg.output(stream, os.path.join(os.getcwd(), 'remuxed', filename) + "." + key, acodec='copy',vcodec='copy')
                     ffmpeg.run(stream, quiet=True)
-                    print("Remuxed " + file + " to " + key)
+                    print("Remuxed " + file + " to ." + key)
                 except Exception as ex:
                     print(bcolors.FAIL + "Error remuxing " + file + " due to: " + str(ex) + bcolors.ENDC + "\n")
                     errors[file] = str(ex)
                 break
         
-    print(bcolors.OKBLUE + "Remuxing complete. " + bcolors.ENDC + bcolors.OKGREEN + str(total-len(errors)) + bcolors.ENDC + " Successful, " + bcolors.FAIL + str(len(errors)) + bcolors.ENDC + " file(s) failed to remux.")
+    print(bcolors.OKBLUE + "Remuxing complete. " + bcolors.ENDC + bcolors.OKGREEN + str(total-len(errors)) + bcolors.ENDC + " Successful, " + bcolors.FAIL + str(len(errors)) + bcolors.ENDC + " file(s) failed to remux.\n")
     if len(errors) > 0:
         print("\n")
         print(bcolors.FAIL + "Failed file(s): " + bcolors.ENDC)

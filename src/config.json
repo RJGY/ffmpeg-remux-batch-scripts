@@ -1,21 +1,19 @@
 { 
-    "operating_system" : {
-        "_comment" : "Supported systems are Windows and Linux.",
-        "os" : "Windows"
-    },
     "conversion_table" : {
-        "_comment" : "",
+        "_comment" : "Edit table to control the outputs and inputs. Inputs on the right hand side in the square brackets on the right side of the colon, outputs on the left hand side.",
         "_example" : "\"mp3\" : [\"opus\", \"wav\", \"flac\", \"m4a\"]",
-        "mp3" : ["opus", "wav", "flac", "m4a"],
-        "jpeg" : ["jpeg", "png"],
-        "mkv" : ["mp4"]
+        "table" : {
+            "mp3" : ["opus", "wav", "flac", "m4a"],
+            "jpeg" : ["jpeg", "png"],
+            "mkv" : ["mp4"]
+        }
     },
     "output_location" : {
-        "_comment" : "",
+        "_comment" : "Location where remux will output files.",
         "location" : ""
     },
     "custom_remux_arguments" : {
-        "_comment" : "Seperate each one with a comma. Leave empty if you do not know what you are doing.",
+        "_comment" : "Custom remux arguments for ffmpeg. Seperate each one with a comma and quotes. Leave empty if you do not know what you are doing.",
         "arguments" : []
     }
 }
