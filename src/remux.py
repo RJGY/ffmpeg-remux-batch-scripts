@@ -22,8 +22,11 @@ def print_ascii():
     
 def pre_remux_checks(files: list):
     json_str = open('src/config.json', 'r').read()
-    conversion_table = json.loads(json_str)
-    conversion_table = conversion_table["conversion_table"]["table"]
+    data = json.loads(json_str)
+    conversion_table = data["conversion_table"]["table"]
+    location = data["output_location"]["location"]
+    if not location:
+        location = "default"
     total = len(files)
     print(bcolors.WARNING + str(total) + " file(s) detected" + bcolors.ENDC)
     print("\n")
@@ -70,12 +73,12 @@ def pre_remux_checks(files: list):
     print("\n")     
     ans = input("Do you want to proceed with remuxing? (y/n)")
     if (ans == 'y'):
-        remux(files, total, conversion_table)
+        remux(files, total, conversion_table, location)
     else:
         print("Exiting...")
         sys.exit()
     
-def remux(files: list, total: int, data: dict):
+def remux(files: list, total: int, data: dict, location: str):
     os.system('cls')
     
     if len(files) == 0:
@@ -83,8 +86,16 @@ def remux(files: list, total: int, data: dict):
         sys.exit()
     count = 0
     errors = {}
-    if total > 1:
-        check_output_folder()
+    if location == "default":
+        if not os.path.exists('Default Output'):
+            os.makedirs('Default Output')
+        location = os.path.join(os.getcwd(), 'Default Output')
+    else:
+        if not check_custom_output_folder(location):
+            if not os.path.exists('Default Output'):
+                os.makedirs('Default Output')
+            location = os.path.join(os.getcwd(), 'Default Output')
+        
     for file in files:
         count += 1
         for key, value in data.items():
@@ -92,14 +103,9 @@ def remux(files: list, total: int, data: dict):
             extension = os.path.splitext(file)[1][1:].strip().lower()
             if extension in value:
                 try:
-                    if total == 1:
-                        print(bcolors.OKBLUE + "Remuxing " + file + " to " + os.path.splitext(file)[0] + "." + key + " (" + str(count) + "/" + str(total) + ")" + bcolors.ENDC)
-                        stream = ffmpeg.input(file)
-                        stream = ffmpeg.output(stream, os.path.splitext(file)[0] + "." + key, acodec='copy',vcodec='copy')
-                    else:
-                        print(bcolors.OKBLUE + "Remuxing " + file + " to " + os.path.join(os.getcwd(), 'remuxed', filename) + "." + key + " (" + str(count) + "/" + str(total) + ")" + bcolors.ENDC)
-                        stream = ffmpeg.input(file)
-                        stream = ffmpeg.output(stream, os.path.join(os.getcwd(), 'remuxed', filename) + "." + key, acodec='copy',vcodec='copy')
+                    print(bcolors.OKBLUE + "Remuxing " + file + " to " + os.path.join(location, filename) + "." + key + " (" + str(count) + "/" + str(total) + ")" + bcolors.ENDC)
+                    stream = ffmpeg.input(file)
+                    stream = ffmpeg.output(stream, os.path.join(location, filename) + "." + key, acodec='copy', vcodec='copy')
                     ffmpeg.run(stream, quiet=True)
                     print("Remuxed " + file + " to ." + key)
                 except Exception as ex:
@@ -113,10 +119,13 @@ def remux(files: list, total: int, data: dict):
         print(bcolors.FAIL + "Failed file(s): " + bcolors.ENDC)
     for key, value in errors.items():
         print(bcolors.FAIL + "Error remuxing " + key + " due to: " + value + bcolors.ENDC)
-    
-def check_output_folder():
-    if not os.path.exists('remuxed'):
-        os.makedirs('remuxed')
+        
+def check_custom_output_folder(output_path) -> bool:
+    if not os.path.exists(output_path):
+        print(bcolors.FAIL + "\nERROR: Output path " + output_path + " does not exist. Switching to default path.\n\n" + bcolors.ENDC)
+        return False
+    else:
+        return True
         
 def main():
     os.system('color')
@@ -125,7 +134,6 @@ def main():
     else:
         pre_remux_checks(sys.argv[1:]) 
     
-
 
 if __name__ == '__main__':
     main()

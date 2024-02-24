@@ -4,6 +4,7 @@ cls
 @echo off
 :: Create Folders
 echo Creating folders
+if not exist ".\Default Output" mkdir ".\Default Output"
 if not exist ".\Font Conversion" mkdir ".\Font Conversion"
 if not exist ".\Metadata Removal" mkdir ".\Metadata Removal"
 if not exist ".\Re-Encoding" mkdir ".\Re-Encoding"
