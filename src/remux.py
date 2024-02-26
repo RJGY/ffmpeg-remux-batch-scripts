@@ -1,5 +1,5 @@
 import sys
-import ffmpeg
+import subprocess
 import json
 import os
 
@@ -25,6 +25,7 @@ def pre_remux_checks(files: list):
     data = json.loads(json_str)
     conversion_table = data["conversion_table"]["table"]
     location = data["output_location"]["location"]
+    arguments = data["custom_remux_arguments"]["arguments"]
     if not location:
         location = "default"
     total = len(files)
@@ -73,12 +74,12 @@ def pre_remux_checks(files: list):
     print("\n")     
     ans = input("Do you want to proceed with remuxing? (y/n)")
     if (ans == 'y'):
-        remux(files, total, conversion_table, location)
+        remux(files, total, conversion_table, location, arguments)
     else:
         print("Exiting...")
         sys.exit()
     
-def remux(files: list, total: int, data: dict, location: str):
+def remux(files: list, total: int, data: dict, location: str, arguments: list):
     os.system('cls')
     
     if len(files) == 0:
@@ -104,9 +105,11 @@ def remux(files: list, total: int, data: dict, location: str):
             if extension in value:
                 try:
                     print(bcolors.OKBLUE + "Remuxing " + file + " to " + os.path.join(location, filename) + "." + key + " (" + str(count) + "/" + str(total) + ")" + bcolors.ENDC)
-                    stream = ffmpeg.input(file)
-                    stream = ffmpeg.output(stream, os.path.join(location, filename) + "." + key, acodec='copy', vcodec='copy')
-                    ffmpeg.run(stream, quiet=True)
+                    call_args = ["ffmpeg", "-i", file]
+                    for argument in arguments:
+                        call_args.append(argument)
+                    call_args.append(os.path.join(location, filename) + "." + key)
+                    subprocess.call(call_args)
                     print("Remuxed " + file + " to ." + key)
                 except Exception as ex:
                     print(bcolors.FAIL + "Error remuxing " + file + " due to: " + str(ex) + bcolors.ENDC + "\n")

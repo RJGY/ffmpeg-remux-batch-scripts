@@ -16,6 +16,6 @@
     "custom_remux_arguments" : {
         "_comment" : "Custom remux arguments for ffmpeg. Seperate each one with a comma and quotes. Leave empty if you do not know what you are doing.",
         "_example" : "[ \"-f\", \"-i\"]",
-        "arguments" : []
+        "arguments" : ["-c", "copy"]
     }
 }
