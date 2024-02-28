@@ -25,18 +25,6 @@
 
 <br>
 
-<h2 style="color: #89C7DF; font-weight: bold;"><span>[⬇️]</span> <span style="text-decoration: underline;">Installation & Removal:</span></h2>
-<blockquote style="padding-bottom: 5px; padding-top: 5px; border-left: 5px solid #ffe4e1;">
-<hr>
-To use these scripts as intended, you must run the `install_dependencies.bat` file to install the necessary libraries on your local system. To remove these scripts from your system, run the `uninstall_dependencies.bat` file instead.
-
-Read the `requirements.txt` for the full breakdown of libraries used.
-
-I am not liable to any damages to your system if the script is misused or modified by a third party. 
-</blockquote>
-
-<br>
-
 <h2 style="color: #89C7DF; font-weight: bold;"><span>[🔧]</span> <span style="text-decoration: underline;">Usage:</span></h2>
 <blockquote style="padding-bottom: 5px; padding-top: 5px; border-left: 5px solid #ffe4e1;">
 <hr>
