@@ -2,13 +2,7 @@ cls
 @echo off
 :: Delete env folder if exists
 echo Deleting Dependencies for Hanabi Utilities.
-if not exist ".\env" goto noFiles
 
-rmdir /s ".\env"
-if exist ".\env" goto noDelete
-
-echo Removed dependencies successfully.
-echo You can now delete the scripts from your system safely.
 set /p DeleteOldFolders="Do you wish to safely delete the folders? This will not delete folders with files inside of them. Y/N"
 if %DeleteOldFolders%==y (echo Deleting folders.) else (goto noDeleteFolder)
 
