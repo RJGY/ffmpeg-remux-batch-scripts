@@ -18,7 +18,7 @@ pause
 goto:eof
 
 :noFiles
-echo ERROR: Dependencies are not installed in your system.
+echo ERROR^: Dependencies are not installed in your system.
 pause
 goto:eof
 

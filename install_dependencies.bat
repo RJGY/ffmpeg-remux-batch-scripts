@@ -18,13 +18,22 @@ python --version 3>NUL
 if errorlevel 1 goto errorNoPython
 
 :pyInstalled
+ffmpeg -version 3>NUL
+if errorlevel 1 goto noFfmpeg
 :: Once done, exit the batch file -- skips executing the errorNoPython section
 echo Done.
 pause
 goto:eof
 
+:: Error
+:noFfmpeg
+echo.
+echo ERROR^: FFmpeg not installed.
+pause
+goto:eof
 
 :: Error
 :errorNoPython
 echo.
-echo Error^: Python not installed
+echo ERROR^: Python not installed.
+pause
