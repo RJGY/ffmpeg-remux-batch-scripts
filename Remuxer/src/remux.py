@@ -110,9 +110,9 @@ def remux(files: list, total: int, data: dict, location: str, arguments: list):
                         call_args.append(argument)
                     call_args.append(os.path.join(location, filename) + "." + key)
                     subprocess.call(call_args)
-                    print("Remuxed " + file + " to ." + key)
+                    print(bcolors.OKGREEN + "\n\nRemuxed " + file + " to ." + key + bcolors.ENDC + "\n")
                 except Exception as ex:
-                    print(bcolors.FAIL + "Error remuxing " + file + " due to: " + str(ex) + bcolors.ENDC + "\n")
+                    print(bcolors.FAIL + "\n\nError remuxing " + file + " due to: " + str(ex) + bcolors.ENDC + "\n")
                     errors[file] = str(ex)
                 break
         

@@ -1,13 +1,3 @@
-<style>
-    hr {
-        margin-top: 5px;
-        margin-bottom: 10px;
-        height: 1px; 
-        border: none;
-        background-color: #555; 
-    }
-</style>
-
 <blockquote style="border-left: 5px solid #ffe4e1;">
 
 <b> <h1 style="font-size: 40px; color: #FFD700;">[💮] Support Me!</h1> </b>
@@ -60,5 +50,5 @@ In order to modify the script to convert as you wish, you can modify the configu
 </blockquote>
 <br>
 
-scripts by RJGY
+Scripts by RJGY
 </blockquote>
