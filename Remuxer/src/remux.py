@@ -30,8 +30,7 @@ def pre_remux_checks(files: list):
         location = "default"
     total = len(files)
     print(bcolors.WARNING + str(total) + " file(s) detected" + bcolors.ENDC)
-    print("\n")
-    print("From your current file configuration, you will be converting: \n")
+    print("\n\nFrom your current file configuration, you will be converting: \n")
     
     supported_extensions = dict()
     for outputs, inputs in conversion_table.items():
