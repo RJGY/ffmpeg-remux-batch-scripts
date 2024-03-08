@@ -5,5 +5,6 @@
 *.m4v
 *.png
 *.mkv
+*.mov
 env/
 remuxed/

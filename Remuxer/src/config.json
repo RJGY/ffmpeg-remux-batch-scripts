@@ -3,7 +3,7 @@
         "_comment" : "Edit table to control the outputs and inputs. Inputs on the right hand side in the square brackets on the right side of the colon, outputs on the left hand side.",
         "_example" : "\"mp3\" : [\"opus\", \"wav\", \"flac\", \"m4a\"]",
         "table" : {
-            "mp3" : ["opus", "wav", "flac", "m4a"],
+            "mp3" : ["opus", "wav", "flac", "m4a", "mov"],
             "jpeg" : ["jpeg", "png"],
             "mkv" : ["mp4"]
         }

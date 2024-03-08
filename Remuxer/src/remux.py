@@ -47,10 +47,9 @@ def pre_remux_checks(files: list):
     for file in files_to_remove:
         files.remove(file)
         
-        
     for outputs, inputs in conversion_table.items():
         count = 0
-        zero_list = [0 for key, value in conversion_table.items()]
+        zero_list = [0 for _ in inputs]
         old_count = dict(zip(inputs, zero_list))
         for file in files:
             extension = os.path.splitext(file)[1][1:].strip().lower()
