@@ -1,5 +1,5 @@
 @echo off
-title Hanabi ^| Remuxer
+title Hanabi ^| Re-Muxing
 cls
 cd %~dp0
 call .\env\Scripts\activate.bat
