@@ -104,8 +104,12 @@ def remux(files: list, total: int, data: dict, location: str, arguments: list):
                 try:
                     print(bcolors.OKBLUE + "Remuxing " + file + " to " + os.path.join(location, filename) + "." + key + " (" + str(count) + "/" + str(total) + ")" + bcolors.ENDC)
                     call_args = ["ffmpeg", "-i", file]
-                    for argument in arguments:
-                        call_args.append(argument)
+                    if not arguments and key == "gif":
+                        call_args.append("-f")
+                        call_args.append("gif")
+                    else:
+                        for argument in arguments:
+                            call_args.append(argument)
                     call_args.append(os.path.join(location, filename) + "." + key)
                     subprocess.check_call(call_args)
                     print(bcolors.OKGREEN + "\n\nRemuxed " + file + " to ." + key + bcolors.ENDC + "\n")
