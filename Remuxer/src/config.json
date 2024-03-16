@@ -5,7 +5,7 @@
         "table" : {
             "mp3" : ["opus", "wav", "flac", "m4a", "mov"],
             "jpeg" : ["jpeg", "png"],
-            "mkv" : ["mp4"]
+            "gif" : ["mp4"]
         }
     },
     "output_location" : {
