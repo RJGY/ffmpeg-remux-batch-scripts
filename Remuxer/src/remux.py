@@ -28,8 +28,8 @@ def pre_remux_checks(files: list):
     arguments = data["custom_remux_arguments"]["arguments"]
     if not location:
         location = "default"
-    total = len(files)
-    print(bcolors.WARNING + str(total) + " file(s) detected" + bcolors.ENDC)
+    num_inputs = len(files)
+    print(bcolors.WARNING + str(num_inputs) + " file(s) detected in input" + bcolors.ENDC)
     print("\n\nFrom your current file configuration, you will be converting: \n")
     
     supported_extensions = dict()
@@ -46,7 +46,8 @@ def pre_remux_checks(files: list):
     
     for file in files_to_remove:
         files.remove(file)
-        
+    
+    total_num_remux = 0
     for outputs, inputs in conversion_table.items():
         count = 0
         zero_list = [0 for _ in inputs]
@@ -61,18 +62,21 @@ def pre_remux_checks(files: list):
             print("Converting " + bcolors.FAIL + str(count) + bcolors.ENDC + " file(s) to " + bcolors.WARNING + "." + outputs + bcolors.ENDC + " (" + ", ".join(sub_list_str) + ")")
         else:
             print("Converting " + bcolors.OKGREEN + str(count) + bcolors.ENDC + " file(s) to " + bcolors.WARNING + "." + outputs + bcolors.ENDC + " (" + ", ".join(sub_list_str) + ")")
+        total_num_remux += count
+    
+    print("\nRemuxing a total " + str(total_num_remux) + " files.")
     
     print("\n")
     if files_to_remove:
         print(bcolors.FAIL + "ERROR: The following file(s) are not supported: Please check your config.json file." + bcolors.ENDC)
         for file in files_to_remove:
             print(bcolors.FAIL + "File " + file + " is not supported." + bcolors.ENDC)
+        print("\n")
         exit()
        
-    print("\n")     
     ans = input("Do you want to proceed with remuxing? (y/n)")
     if (ans == 'y'):
-        remux(files, total, conversion_table, location, arguments)
+        remux(files, total_num_remux, conversion_table, location, arguments)
     else:
         print("Exiting...")
         sys.exit()
@@ -116,7 +120,6 @@ def remux(files: list, total: int, data: dict, location: str, arguments: list):
                 except Exception as ex:
                     print(bcolors.FAIL + "\n\nError remuxing " + file + " due to: " + str(ex) + bcolors.ENDC + "\n")
                     errors[file] = str(ex)
-                break
         
     print(bcolors.OKBLUE + "Remuxing complete. " + bcolors.ENDC + bcolors.OKGREEN + str(total-len(errors)) + bcolors.ENDC + " Successful, " + bcolors.FAIL + str(len(errors)) + bcolors.ENDC + " file(s) failed to remux.\n")
     if len(errors) > 0:
