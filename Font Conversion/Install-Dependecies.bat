@@ -10,4 +10,13 @@ if %errorlevel%==0 (
   echo Error installing FontTools: %errorlevel%
 )
 
+:: Install Brotli using pip
+pip install brotli
+
+if if %errorlevel%==0 (
+  echo Brotli installed successfully!
+) else (
+  echo Error installing Brotli: %errorlevel%
+)
+
 pause
