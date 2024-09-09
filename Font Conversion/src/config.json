@@ -1,0 +1,13 @@
+{ 
+    "output_format" : {
+        "_comment" : "Edit table to control the outputs and inputs. Inputs on the right hand side in the square brackets on the right side of the colon, outputs on the left hand side.",
+        "_accepted formats" : ["otf", "ttf", "woff2", "woff"],
+        "_example" : "otf",
+        "format" : "otf"
+    },
+    "output_location" : {
+        "_comment" : "Location where remux script will output files. Path must be absolute, not relative. If no output is specified, output defaults to relative './Default Output' folder.",
+        "_example" : "C:\\Users\\Public\\Desktop\\Remux",
+        "location" : "C:\\Users\\Reese\\Downloads"
+    }
+}
