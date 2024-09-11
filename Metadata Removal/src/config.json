@@ -1,0 +1,12 @@
+{ 
+    "output_location" : {
+        "_comment" : "Location where metadata removal script will output files. Path must be absolute, not relative. If no output is specified, output defaults to relative './Default Output' folder.",
+        "_example" : "C:\\Users\\Public\\Desktop\\Remux",
+        "location" : "C:\\Users\\Reese\\Downloads"
+    },
+    "custom_metadata_removal_arguments" : {
+        "_comment" : "Custom metadata removal arguments for ffmpeg. Seperate each one with a comma and quotes. Leave empty if you do not know what you are doing.",
+        "_example" : "[ \"-f\", \"-i\"]",
+        "arguments" : []
+    }
+}
