@@ -1,0 +1,37 @@
+{ 
+    "interpolation_type" : {
+        "_comment" : "Edit type to change the algorithim used.",
+        "_example" : "lanczos, neighbor",
+        "type" : "lanczos"
+    },
+    "codec" : {
+        "_comment" : "Edit codec to change the codec used.",
+        "_example" : "\"libx265\", \"libx264\"",
+        "codec" : "libx264"
+    },
+    "quality" : {
+        "_comment" : "Edit quality to change the quality, higher number the worse. Needs a number between 0 and 51",
+        "_example" : "12, 35, 42",
+        "crf" : "13"
+    },
+    "preset" : {
+        "_comment" : "Edit preset used by ffmpeg. Faster speeds may lower quality.",
+        "_example" : "slow, ultrafast",
+        "preset" : "slow"
+    },
+    "scale" : {
+        "_comment" : "Edit scale used to output. Must be two numbers seperated by an x",
+        "_example" : "3840x2160, 1920x1080",
+        "scale" : "1920x1080"
+    },
+    "output_location" : {
+        "_comment" : "Location where remux script will output files. Path must be absolute, not relative. If no output is specified, output defaults to relative './Default Output' folder.",
+        "_example" : "C:\\Users\\Public\\Desktop\\Remux",
+        "location" : "C:\\Users\\Reese\\Downloads\\asdf"
+    },
+    "custom_upscaler_arguments" : {
+        "_comment" : "Custom upscaler arguments for ffmpeg. Seperate each one with a comma and quotes. Leave empty if you do not know what you are doing.",
+        "_example" : "[]",
+        "arguments" : []
+    }
+}
